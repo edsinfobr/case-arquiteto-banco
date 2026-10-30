@@ -15,17 +15,19 @@ jobs:
         with:
           node-version: 20
 
-      - name: Regenerate diagrams
-        run: node scripts/generate-case.mjs
+      - name: Regenerate diagrams and images
+        run: |
+          node scripts/generate-case.mjs
+          node scripts/render-svg.mjs
 
       - name: Check generator output matches committed files
         run: |
-          if [ -n "$(git status --porcelain diagrams)" ]; then
-            echo "Os diagramas versionados estão fora de sincronia com o gerador."
-            git --no-pager diff --stat diagrams
+          if [ -n "$(git status --porcelain diagrams images)" ]; then
+            echo "Diagramas ou imagens versionados estão fora de sincronia com os geradores."
+            git --no-pager diff --stat diagrams images
             exit 1
           fi
-          echo "Diagramas em sincronia com o gerador."
+          echo "Diagramas e imagens em sincronia com os geradores."
 
       - name: Validate diagram JSON
         run: |

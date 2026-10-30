@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "generate": "node scripts/generate-case.mjs",
+    "render": "node scripts/render-svg.mjs",
+    "build": "node scripts/generate-case.mjs && node scripts/render-svg.mjs",
     "serve": "npx --yes serve ."
   },
   "license": "MIT"

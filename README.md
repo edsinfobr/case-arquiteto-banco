@@ -38,6 +38,31 @@ npm run serve
 
 No visualizador dá para navegar entre os 7 diagramas e baixar cada um como **SVG**.
 
+## 🖼️ Arquiteturas (prints)
+
+Imagens geradas a partir dos diagramas (`images/*.svg`). Para editar/exportar, importe os `.eas.json` no [Enterprise Architecture Studio](https://github.com/edsinfobr/enterprise-architecture-studio).
+
+### 01 · Visão de Arquitetura (TOGAF Fase A)
+![Visão de Arquitetura](./images/01-visao-de-arquitetura-togaf-fase-a.svg)
+
+### 02 · Mapa de Problemas de Negócio — Subdomínios (DDD)
+![Subdomínios DDD](./images/02-mapa-de-problemas-de-negocio-subdominios-ddd.svg)
+
+### 03 · Mapa de Capacidades de Negócio
+![Mapa de Capacidades](./images/03-mapa-de-capacidades-de-negocio.svg)
+
+### 04 · Cadeia de Valor (Value Chain)
+![Cadeia de Valor](./images/04-cadeia-de-valor-value-chain.svg)
+
+### 05 · Value Stream — Realizar um Pagamento
+![Value Stream](./images/05-value-stream-realizar-um-pagamento.svg)
+
+### 06 · Arquitetura Alvo TO-BE (Microservices · C4)
+![Arquitetura Alvo](./images/06-arquitetura-alvo-to-be-microservices-c4.svg)
+
+### 07 · Roadmap de Migração (Arquiteturas Intermediárias)
+![Roadmap de Migração](./images/07-roadmap-de-migracao-arquiteturas-intermediarias.svg)
+
 ## 📐 Artefatos (pasta `diagrams/`)
 
 | # | Artefato | Framework | Responde ao item do case |
@@ -50,7 +75,7 @@ No visualizador dá para navegar entre os 7 diagramas e baixar cada um como **SV
 | 06 | Arquitetura Alvo TO-BE (Microservices) | C4 (Container) | Decomposição, building blocks, event-driven |
 | 07 | Roadmap de Migração | TOGAF Fases E/F | Arquiteturas intermediárias (Strangler Fig) |
 
-Os diagramas estão no formato `.eas.json`, nativo do [Enterprise Architecture Studio](https://github.com/edsinfobr/enterprise-architecture-studio), onde podem ser **editados** e exportados em PNG/SVG/PDF.
+Os diagramas estão no formato `.eas.json`, nativo do [Enterprise Architecture Studio](https://github.com/edsinfobr/enterprise-architecture-studio), onde podem ser **editados** e exportados em PNG/SVG/PDF. Regenere as imagens com `npm run render`.
 
 ## 🔁 Regenerar os diagramas
 
@@ -73,10 +98,13 @@ npm run generate
 ```
 case-arquiteto-banco/
 ├── index.html                 # Visualizador standalone
-├── viewer.js                  # Renderizador SVG dos .eas.json
+├── viewer.js                  # Renderizador SVG dos .eas.json (no navegador)
 ├── VISAO-DE-ARQUITETURA.md     # Documento executivo completo
+├── images/                    # Prints SVG das 7 arquiteturas (exibidos acima)
 ├── diagrams/                  # 7 diagramas .eas.json + manifest.json
-├── scripts/generate-case.mjs  # Gerador determinístico dos diagramas
+├── scripts/
+│   ├── generate-case.mjs      # Gerador determinístico dos diagramas
+│   └── render-svg.mjs         # Gera os PNG/SVG em images/
 └── .github/workflows/         # CI: valida e checa sincronia do gerador
 ```
 
