@@ -344,6 +344,53 @@ function roadmap() {
   write(diagram("07 - Roadmap de Migracao (Arquiteturas Intermediarias)", "togaf", nodes, edges));
 }
 
+// =====================================================================
+// 8) DDD TÁTICO — Bounded Context "Conta de Pagamentos"
+//    Aggregate, Entities, Value Objects, Domain Events, Repository, Service
+// =====================================================================
+function tacticalDdd() {
+  const nodes = [], edges = [];
+
+  // Boundary do bounded context (C4 boundary)
+  const bc = C4N(C4.boundary, "Bounded Context: Conta de Pagamentos", 40, 40, { w: 640, h: 520 });
+
+  // Aggregate Root
+  const agg = N({ ...C.appcomp, icon: "Boxes" }, "«Aggregate Root» Account", 90, 110, { w: 220, h: 72, description: "fronteira de consistência" });
+
+  // Entities
+  const entTx = N({ ...C.appcomp, icon: "Component" }, "«Entity» Transaction", 90, 230, { w: 200 });
+  const entEntry = N({ ...C.appcomp, icon: "Component" }, "«Entity» LedgerEntry", 90, 330, { w: 200 });
+
+  // Value Objects
+  const voMoney = N({ ...C.data, icon: "Coins" }, "«VO» Money (amount+currency)", 360, 110, { w: 220 });
+  const voPixKey = N({ ...C.data, icon: "KeyRound" }, "«VO» PixKey", 360, 200, { w: 220 });
+  const voStatus = N({ ...C.data, icon: "CircleDot" }, "«VO» AccountStatus", 360, 290, { w: 220 });
+
+  // Domain Events
+  const evPaid = N({ ...C.bobject, icon: "Zap" }, "«Event» PaymentExecuted", 360, 390, { w: 220, fill: "#fee2e2", stroke: "#dc2626", text: "#7f1d1d" });
+  const evCash = N({ ...C.bobject, icon: "Zap" }, "«Event» CashbackAccrued", 360, 470, { w: 220, fill: "#fee2e2", stroke: "#dc2626", text: "#7f1d1d" });
+
+  // Repository & Domain Service (fora do agregado, dentro do contexto)
+  const repo = N({ ...C.appcomp, icon: "Database" }, "«Repository» AccountRepository", 90, 440, { w: 220 });
+  const dsvc = N({ ...C.appfn, icon: "Cpu" }, "«Domain Service» PaymentService", 90, 540, { w: 220 });
+
+  nodes.push(bc, agg, entTx, entEntry, voMoney, voPixKey, voStatus, evPaid, evCash, repo, dsvc);
+
+  edges.push(
+    E(agg, entTx, "contém", { endArrow: "diamond", startArrow: "none" }),
+    E(agg, entEntry, "contém", { endArrow: "diamond" }),
+    E(agg, voStatus, "tem", { lineStyle: "dashed", endArrow: "open" }),
+    E(entTx, voMoney, "usa", { lineStyle: "dashed", endArrow: "open" }),
+    E(entTx, voPixKey, "usa", { lineStyle: "dashed", endArrow: "open" }),
+    E(agg, evPaid, "publica", { lineStyle: "dashed", endArrow: "open", color: "#dc2626" }),
+    E(agg, evCash, "publica", { lineStyle: "dashed", endArrow: "open", color: "#dc2626" }),
+    E(repo, agg, "persiste", { endArrow: "open" }),
+    E(dsvc, agg, "orquestra", { endArrow: "open" }),
+  );
+
+  write(diagram("08 - DDD Tatico - Bounded Context Conta de Pagamentos", "c4", nodes, edges, { c4Level: "component" }));
+}
+
 visaoArquitetura();
 subdominios();
 capacidades();
@@ -351,6 +398,7 @@ valueChain();
 valueStream();
 targetArchitecture();
 roadmap();
+tacticalDdd();
 
 // manifest.json — lista ordenada usada pelo visualizador standalone (viewer.js).
 import { readdirSync } from "node:fs";

@@ -77,6 +77,8 @@ Onboarding/KYC, Identity & AuthZ, Account & Balance, Payments Engine (Pix/TED/Bo
 **Padrão de decomposição:** *decompose by subdomain (DDD)* + *bounded context = service*.
 Cada microservice mapeia um bounded context e possui **database-per-service**; integração assíncrona por **Event Bus (Kafka)** — padrões Saga/Event-driven para consistência e desacoplamento.
 
+> **DDD tático** — o diagrama `08 - DDD Tático` detalha o interior do bounded context *Conta de Pagamentos*: Aggregate Root `Account`, entidades (`Transaction`, `LedgerEntry`), value objects (`Money`, `PixKey`, `AccountStatus`), domain events (`PaymentExecuted`, `CashbackAccrued`), `AccountRepository` e `PaymentService`.
+
 Building Blocks (ABBs/SBBs):
 - **Platform BBs:** API Gateway/BFF, Identity & AuthZ, Event Bus, Observability.
 - **Product BBs:** Accounts, Payments Engine, Ledger, Cashback.

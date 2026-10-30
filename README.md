@@ -8,7 +8,7 @@ Resolução completa de um **case de Enterprise Architecture** para um banco em 
 ![C4](https://img.shields.io/badge/C4-Model-438dd5.svg)
 ![DDD](https://img.shields.io/badge/DDD-estrat%C3%A9gico%20%26%20t%C3%A1tico-16a34a.svg)
 
-> Documento executivo completo: **[VISAO-DE-ARQUITETURA.md](./VISAO-DE-ARQUITETURA.md)**
+> 📄 Documento executivo: **[VISAO-DE-ARQUITETURA.md](./VISAO-DE-ARQUITETURA.md)** · ✅ Rastreabilidade: **[RASTREABILIDADE.md](./RASTREABILIDADE.md)** (100% dos requisitos do desafio atendidos)
 
 ---
 
@@ -63,6 +63,9 @@ Imagens geradas a partir dos diagramas (`images/*.svg`). Para editar/exportar, i
 ### 07 · Roadmap de Migração (Arquiteturas Intermediárias)
 ![Roadmap de Migração](./images/07-roadmap-de-migracao-arquiteturas-intermediarias.svg)
 
+### 08 · DDD Tático — Bounded Context "Conta de Pagamentos"
+![DDD Tático](./images/08-ddd-tatico-bounded-context-conta-de-pagamentos.svg)
+
 ## 📐 Artefatos (pasta `diagrams/`)
 
 | # | Artefato | Framework | Responde ao item do case |
@@ -74,6 +77,7 @@ Imagens geradas a partir dos diagramas (`images/*.svg`). Para editar/exportar, i
 | 05 | Value Stream "Realizar um Pagamento" | Value Stream | Interoperabilidade de funcionalidades |
 | 06 | Arquitetura Alvo TO-BE (Microservices) | C4 (Container) | Decomposição, building blocks, event-driven |
 | 07 | Roadmap de Migração | TOGAF Fases E/F | Arquiteturas intermediárias (Strangler Fig) |
+| 08 | DDD Tático — Bounded Context | DDD tático (C4 Component) | Aggregate, Entities, Value Objects, Domain Events, Repository |
 
 Os diagramas estão no formato `.eas.json`, nativo do [Enterprise Architecture Studio](https://github.com/edsinfobr/enterprise-architecture-studio), onde podem ser **editados** e exportados em PNG/SVG/PDF. Regenere as imagens com `npm run render`.
 

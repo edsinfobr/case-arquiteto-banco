@@ -23,6 +23,7 @@ async function loadManifest() {
       "05-value-stream-realizar-um-pagamento.eas.json",
       "06-arquitetura-alvo-to-be-microservices-c4.eas.json",
       "07-roadmap-de-migracao-arquiteturas-intermediarias.eas.json",
+      "08-ddd-tatico-bounded-context-conta-de-pagamentos.eas.json",
     ],
   };
 }
