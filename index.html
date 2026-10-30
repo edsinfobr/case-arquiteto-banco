@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case Enterprise Architecture — Banco SP</title>
+    <style>
+      :root {
+        --bg: #f1f5f9;
+        --panel: #ffffff;
+        --ink: #1e293b;
+        --muted: #64748b;
+        --border: #e2e8f0;
+        --accent: #1d4ed8;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 12px 20px;
+        background: var(--panel);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        flex-wrap: wrap;
+      }
+      header h1 { font-size: 16px; margin: 0; }
+      header .sub { font-size: 12px; color: var(--muted); }
+      .layout { display: flex; min-height: calc(100vh - 58px); }
+      nav {
+        width: 300px;
+        background: var(--panel);
+        border-right: 1px solid var(--border);
+        padding: 12px;
+        overflow-y: auto;
+      }
+      nav button {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 10px 12px;
+        margin-bottom: 6px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #f8fafc;
+        cursor: pointer;
+        font-size: 13px;
+        color: var(--ink);
+      }
+      nav button:hover { border-color: var(--accent); }
+      nav button.active { background: #dbeafe; border-color: var(--accent); font-weight: 600; }
+      main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+      .toolbar {
+        padding: 10px 16px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        background: var(--panel);
+      }
+      .toolbar .title { font-weight: 600; flex: 1; }
+      .toolbar button {
+        padding: 6px 12px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: #fff;
+        cursor: pointer;
+        font-size: 13px;
+      }
+      .toolbar button:hover { border-color: var(--accent); }
+      .stage { flex: 1; overflow: auto; padding: 20px; }
+      .stage svg { background: #fff; border: 1px solid var(--border); border-radius: 8px; }
+      footer { padding: 10px 20px; font-size: 12px; color: var(--muted); background: var(--panel); border-top: 1px solid var(--border); }
+      a { color: var(--accent); }
+      .hint { color: var(--muted); font-size: 12px; padding: 8px 12px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>🏦 Case Enterprise Architecture — Banco SP</h1>
+        <div class="sub">Visão de Arquitetura (TOGAF Fase A) · C4 · ArchiMate · DDD</div>
+      </div>
+      <div style="flex:1"></div>
+      <a class="sub" href="VISAO-DE-ARQUITETURA.md">📄 Documento executivo (Markdown)</a>
+    </header>
+
+    <div class="layout">
+      <nav id="nav"></nav>
+      <main>
+        <div class="toolbar">
+          <span class="title" id="title">Carregando…</span>
+          <button id="btn-svg">⬇ Baixar SVG</button>
+        </div>
+        <div class="stage" id="stage"></div>
+      </main>
+    </div>
+
+    <footer>
+      Visualizador standalone — abre os arquivos <code>diagrams/*.eas.json</code>.
+      Para edição completa, importe os JSON no
+      <a href="https://github.com/edsinfobr/enterprise-architecture-studio" target="_blank" rel="noopener">Enterprise Architecture Studio</a>.
+    </footer>
+
+    <script type="module" src="./viewer.js"></script>
+  </body>
+</html>

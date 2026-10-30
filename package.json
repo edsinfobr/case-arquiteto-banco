@@ -1,0 +1,12 @@
+{
+  "name": "case-arquiteto-banco",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Case de Enterprise Architecture (TOGAF/ArchiMate/C4/DDD) para um banco em São Paulo, com diagramas e visualizador standalone.",
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/generate-case.mjs",
+    "serve": "npx --yes serve ."
+  },
+  "license": "MIT"
+}

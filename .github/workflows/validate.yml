@@ -1,0 +1,32 @@
+name: Validate Case
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Regenerate diagrams
+        run: node scripts/generate-case.mjs
+
+      - name: Check generator output matches committed files
+        run: |
+          if [ -n "$(git status --porcelain diagrams)" ]; then
+            echo "Os diagramas versionados estão fora de sincronia com o gerador."
+            git --no-pager diff --stat diagrams
+            exit 1
+          fi
+          echo "Diagramas em sincronia com o gerador."
+
+      - name: Validate diagram JSON
+        run: |
+          node -e "const fs=require('fs');const m=JSON.parse(fs.readFileSync('diagrams/manifest.json'));for(const f of m.diagrams){const d=JSON.parse(fs.readFileSync('diagrams/'+f));if(!Array.isArray(d.nodes)||!Array.isArray(d.edges))throw new Error('Invalid '+f);}console.log('OK: '+m.diagrams.length+' diagramas válidos');"

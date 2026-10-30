@@ -1,0 +1,11 @@
+{
+  "diagrams": [
+    "01-visao-de-arquitetura-togaf-fase-a.eas.json",
+    "02-mapa-de-problemas-de-negocio-subdominios-ddd.eas.json",
+    "03-mapa-de-capacidades-de-negocio.eas.json",
+    "04-cadeia-de-valor-value-chain.eas.json",
+    "05-value-stream-realizar-um-pagamento.eas.json",
+    "06-arquitetura-alvo-to-be-microservices-c4.eas.json",
+    "07-roadmap-de-migracao-arquiteturas-intermediarias.eas.json"
+  ]
+}
